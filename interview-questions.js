@@ -212,3 +212,19 @@ function findMedian(array){
 }
 let medianArr = [5,1,2];
 findMedian(medianArr);
+
+//16. How to convert a byte array to String?
+
+function binaryToString(array){
+    let  result = "";
+    for (let i = 0; i < array.length; i++) {
+        let binaryString = array[i];
+        let decimalValue = parseInt(binaryString, 2);
+        asciiChar = String.fromCharCode(decimalValue);
+        result = result + asciiChar
+        
+    }
+    console.log(result);
+    return result;
+}
+binaryToString(["1011101", "1010111", "0110101"]);
