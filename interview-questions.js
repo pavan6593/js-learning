@@ -2,8 +2,8 @@
 
 const numbers = [10, 20, 25, 45, 54, 85, 20, 25, 45, 54, 85];
 
-const max = Math.max.apply(null, numbers);
-const min = Math.min.apply(null, numbers);
+const max = Math.max(...numbers); //The spread operator (...) is used to spread out the numbers in the array as individual arguments to the Math.max() function.
+const min = Math.min.apply(null, numbers); //the apply() method is used to call the Math.max() function with the null object as its this value and the numbers array as its arguments. The apply() method allows you to call a function with a specified this value and an array of arguments.
 console.log(max);
 console.log(min);
 
@@ -228,3 +228,61 @@ function binaryToString(array){
     return result;
 }
 binaryToString(["1011101", "1010111", "0110101"]);
+
+//17. How to convert a String to byte array? (Reversed the above questions - Added)
+
+function stringToBinary(string){
+    let result = [];
+    for (let i = 0; i < string.length; i++) {
+        let decimalValue = string.charCodeAt(i);
+        let binaryVal = decimalValue.toString(2); //Coverting number to string using base
+        result.push(binaryVal);
+    }
+    console.log(result);
+    return result;
+}
+stringToBinary("Hello");
+
+//18. How do you find the missing number in a given integer array of 1 to 100?
+
+function missingNumber(array){
+    const min = Math.min(...array);
+    const max = Math.max(...array);
+    const missingNumber = [];
+    for (let i = min; i <= max; i++) {
+        if (!array.includes(i)) {
+            missingNumber.push(i);
+        }
+    }
+    console.log(missingNumber);
+    return missingNumber;
+}
+
+missingNumber([2,25]);
+
+
+//19. Binary Search algorithm example
+
+function binarySearch(array, target) {
+    let left = 0;
+    let right = array.length - 1;
+  
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      if (array[mid] === target) {
+        return mid;
+      } else if (array[mid] < target) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+  
+    return -1; // Target value not found in the array
+  }
+  
+  // Example usage:
+  const arr = [1, 3, 5, 7, 9, 11, 13, 15];
+  const target = 11;
+  const index = binarySearch(arr, target);
+  console.log(index); // Output: 3
